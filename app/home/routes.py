@@ -6,6 +6,7 @@ import requests
 from spyse import spyse
 from bs4 import BeautifulSoup
 import cfscrape
+import webbrowser
 
 s = spyse()
 
@@ -202,17 +203,23 @@ def hunterio_search():
         return render_template('emails.html')
 
 
-@blueprint.route("/dork", methods=['GET', 'POST'])
+@blueprint.route("/dork", methods=['POST'])
 @login_required
 def google_dork():
     target = ""
     if request.form.get('target'):
         target = request.form.get('target')
-        location = "https://www.google.com/search?q=site:" + target + " ext:php OR ext:asp OR ext:aspx OR ext:txt OR ext:sql OR ext:bak OR ext:csv OR ext:xml"
-        if len(target) > 1:
-            return redirect(location, code=302)
-        elif len(target) >0:
-            return render_template('dork.html')
+        dork1 = "https://www.google.com/search?q=site:" + target + " intitle:index.of&filter=0"
+        dork2 = "https://www.google.com/search?q=site:" + target + " ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini&filter=0"
+        dork3 = "https://www.google.com/search?q=site:" + target + " ext:sql | ext:dbf | ext:mdb&filter=0"
+        dork4 = "https://www.google.com/search?q=site:" + target + " ext:aspx | ext:php | ext:asp | ext:jsp | ext:jsf | ext:log&filter=0"
+        dork5 = "https://www.google.com/search?q=site:" + target + ' intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"&filter=0'
+        webbrowser.open_new_tab(dork1)
+        webbrowser.open_new_tab(dork2)
+        webbrowser.open_new_tab(dork3)
+        webbrowser.open_new_tab(dork4)
+        webbrowser.open_new_tab(dork5)
+        return render_template('dork.html')
     else:
         return render_template('dork.html')
 
