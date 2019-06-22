@@ -7,4 +7,4 @@ flask_sqlalchemy
 gunicorn
 psycopg2
 bs4
-cfscrape
+cfscrapelxml

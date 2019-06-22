@@ -32,6 +32,8 @@ source venv/bin/activate
 
 ## Setup (with SQLite database)
 
+Note that a postgres client is required to install psycopg2 regardless of configuration.
+
 #### Clone this repository:
 
 ```git clone https://github.com/0days/Blue```  
@@ -53,6 +55,14 @@ flask run --host=0.0.0.0
 
 ```git clone https://github.com/0days/Blue```  
 
+#### Install postgres and postgres clients
+
+```sudo apt-get install postgresql libpq-dev postgresql-client postgresql-client-common```
+
+#### Install nodejs
+
+```sudo apt-get install nodejs```
+
 #### Install requirements:  
 
 ```pip install -r requirements.txt```
@@ -73,6 +83,12 @@ export BLUE_DATABASE_PASSWORD=your-password
 export FLASK_APP=blue.py    
 flask run --host=0.0.0.0  
 ```
+
+## Key config
+
+Some API keys are required for this to run. Include your hunter.io API key within app/home/routes.py
+
+In the future these should be included in a config file.
 <hr>  
   
 ## Credits
