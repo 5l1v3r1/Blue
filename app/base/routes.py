@@ -21,8 +21,10 @@ def route_default():
 @blueprint.route('/<template>')
 @login_required
 def route_template(template):
-    return render_template(template + '.html')
-
+    if template == "favicon.io":
+        return "f" # Could return a real favicon if you want :P
+    else:
+        return render_template(template + '.html')
 
 @blueprint.route('/fixed_<template>')
 @login_required
